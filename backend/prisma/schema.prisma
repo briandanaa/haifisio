@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role
+  phone     String?
+  createdAt DateTime @default(now())
+
+  patient   Patient?
+  therapist Therapist?
+  doctor    Doctor?
+}
+
+enum Role {
+  ADMIN
+  PATIENT
+  THERAPIST
+  DOCTOR
+}
+
+model Patient {
+  id          Int       @id @default(autoincrement())
+  userId      Int       @unique
+  dateOfBirth DateTime?
+  gender      String?
+  address     String?
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Therapist {
+  id                 Int     @id @default(autoincrement())
+  userId             Int     @unique
+  licenseNumber      String
+  specialization     String?
+  experienceYears    Int?
+  clinicAddress      String?
+  statusVerification Boolean @default(false)
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Doctor {
+  id           Int     @id @default(autoincrement())
+  userId       Int     @unique
+  sipNumber    String
+  hospitalName String?
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Booking {
+  id          Int           @id @default(autoincrement())
+  patientId   Int
+  therapistId Int
+  bookingDate DateTime
+  location    String
+  status      BookingStatus @default(PENDING)
+
+  createdAt DateTime @default(now())
+}
+
+enum BookingStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  COMPLETED
+  CANCELLED
+}
