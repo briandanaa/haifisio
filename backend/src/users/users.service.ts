@@ -1,20 +1,42 @@
-import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
+import { Injectable } from '@nestjs/common'
+import { UsersRepository } from './repositories/users.repository'
+import { PaginationDto } from '../common/dto/pagination.dto'
 
 @Injectable()
 export class UsersService {
 
-  constructor(private prisma: PrismaService) {}
+ constructor(private usersRepository:UsersRepository){}
 
-  async createUser() {
-    return this.prisma.user.create({
-      data: {
-        name: "Dana",
-        email: "dana@test.com",
-        password: "123",
-        role: "ADMIN"
-      }
-    })
+ async findAll(query: PaginationDto){
+
+  const page = query.page ?? 1
+  const limit = query.limit ?? 10
+  const skip = (page - 1) * limit
+
+  const users = await this.usersRepository.findMany({
+ skip,
+ take: limit
+})
+
+  const total = await this.usersRepository.count()
+
+  return {
+   data: users,
+   meta: {
+    page,
+    limit,
+    total
+   }
   }
+
+ }
+
+ async findById(id:number){
+  return this.usersRepository.findById(id)
+ }
+
+ async updateUser(id:number,data:any){
+  return this.usersRepository.update(id,data)
+ }
 
 }

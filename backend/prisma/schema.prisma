@@ -1,8 +1,7 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// Get a free hosted Postgres database in seconds: `npx create-db`
 
 generator client {
   provider = "prisma-client-js"
@@ -10,7 +9,6 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -35,8 +33,8 @@ enum Role {
 }
 
 model Patient {
-  id          Int       @id @default(autoincrement())
-  userId      Int       @unique
+  id          Int    @id @default(autoincrement())
+  userId      Int    @unique
   dateOfBirth DateTime?
   gender      String?
   address     String?
@@ -45,28 +43,28 @@ model Patient {
 }
 
 model Therapist {
-  id                 Int     @id @default(autoincrement())
-  userId             Int     @unique
-  licenseNumber      String
-  specialization     String?
-  experienceYears    Int?
-  clinicAddress      String?
+  id                Int    @id @default(autoincrement())
+  userId            Int    @unique
+  licenseNumber     String
+  specialization    String?
+  experienceYears   Int?
+  clinicAddress     String?
   statusVerification Boolean @default(false)
 
   user User @relation(fields: [userId], references: [id])
 }
 
 model Doctor {
-  id           Int     @id @default(autoincrement())
-  userId       Int     @unique
-  sipNumber    String
-  hospitalName String?
+  id            Int    @id @default(autoincrement())
+  userId        Int    @unique
+  sipNumber     String
+  hospitalName  String?
 
   user User @relation(fields: [userId], references: [id])
 }
 
 model Booking {
-  id          Int           @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   patientId   Int
   therapistId Int
   bookingDate DateTime
