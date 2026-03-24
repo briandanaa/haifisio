@@ -1,54 +1,45 @@
-import { PrismaClient, Role } from '@prisma/client'
+import { PrismaClient, Role, Prisma } from '@prisma/client'
+import { PrismaPg } from '@prisma/adapter-pg'
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient({
+  adapter: new PrismaPg({
+    connectionString: process.env.DATABASE_URL!
+  })
+})
 
 async function main() {
 
- await prisma.user.createMany({
-  data: [
-   {
+  const users: Prisma.UserCreateManyInput[] = []
+
+  for (let i = 1; i <= 100; i++) {
+    users.push({
+      email: `user${i}@test.com`,
+      password: '123456',
+      name: `User ${i}`,
+      role: Role.PATIENT
+    })
+  }
+
+  users.push({
     email: 'admin@haifisio.com',
     password: '123456',
     name: 'Admin',
     role: Role.ADMIN
-   },
-   {
-    email: 'dana@haifisio.com',
-    password: '123456',
-    name: 'Dana',
-    role: Role.ADMIN
-   },
-   {
-    email: 'user1@test.com',
-    password: '123456',
-    name: 'User One',
-    role: Role.PATIENT
-   },
-   {
-    email: 'user2@test.com',
-    password: '123456',
-    name: 'User Two',
-    role: Role.PATIENT
-   },
-   {
-    email: 'user3@test.com',
-    password: '123456',
-    name: 'User Three',
-    role: Role.PATIENT
-   }
-  ],
-  skipDuplicates: true
- })
+  })
 
- console.log('Seed user created')
+  await prisma.user.createMany({
+    data: users,
+    skipDuplicates: true
+  })
 
+  console.log('✅ Seed berhasil 100 user')
 }
 
 main()
- .catch((e) => {
-  console.error(e)
-  process.exit(1)
- })
- .finally(async () => {
-  await prisma.$disconnect()
- })
+  .catch((e) => {
+    console.error(e)
+    process.exit(1)
+  })
+  .finally(async () => {
+    await prisma.$disconnect()
+  })
