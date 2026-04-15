@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common'
 
 import { Reflector } from '@nestjs/core'
+import { Role } from '@prisma/client' // ✅ TAMBAHAN
 
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -13,20 +14,30 @@ export class RolesGuard implements CanActivate {
 
  canActivate(context: ExecutionContext): boolean {
 
-  const roles = this.reflector.get<string[]>(
-   'roles',
-   context.getHandler()
-  )
+  // ✅ FIX: ambil dari handler + class
+  const roles = this.reflector.getAllAndOverride<Role[]>('roles', [
+   context.getHandler(),
+   context.getClass(),
+  ])
 
-  if(!roles){
+  // ✅ kalau tidak ada roles → bebas
+  if (!roles) {
    return true
   }
 
   const request = context.switchToHttp().getRequest()
   const user = request.user
 
-  return roles.includes(user.role)
+  // ✅ DEBUG (WAJIB saat ini)
+  console.log('REQUIRED ROLES:', roles)
+  console.log('USER:', user)
 
+  // ✅ FIX: handle jika user kosong
+  if (!user || !user.role) {
+   return false
+  }
+
+  return roles.includes(user.role)
  }
 
 }

@@ -1,5 +1,5 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { NestFactory } from '@nestjs/core'
+import { AppModule } from './app.module'
 import 'dotenv/config';
 import { ValidationPipe } from '@nestjs/common'
 import { ResponseInterceptor } from './common/interceptors/response.interceptor'
@@ -24,6 +24,16 @@ SwaggerModule.setup('api', app, document)
  app.useGlobalPipes(new ValidationPipe())
  app.useGlobalInterceptors(new ResponseInterceptor())
  app.useGlobalFilters(new HttpExceptionFilter())
+ app.enableCors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+  })
  await app.listen(3000)
+
+ app.useGlobalPipes(
+ new ValidationPipe({
+  transform: true
+ })
+)
 }
 bootstrap();

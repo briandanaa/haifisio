@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from '../prisma/prisma.service'
 import { JwtService } from '@nestjs/jwt'
+import { Role } from '@prisma/client'
 
 @Injectable()
 export class AuthService {
@@ -39,7 +40,8 @@ export class AuthService {
 
     const token = this.jwtService.sign({
       userId: user.id,
-      email: user.email
+      email: user.email,
+      role: user.role
     })
 
     return {
