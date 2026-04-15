@@ -1,0 +1,100 @@
+.input-ket::placeholder {
+  opacity: 0;
+}
+
+.input-ket:focus::placeholder {
+  opacity: 1;
+}
+
+.v-popper__inner {
+  max-width: 500px;
+}
+
+.berkas-preview-wrapper {
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+  overflow: auto;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.comment {
+  border-color: #ff851b !important;
+  color: #ff851b !important;
+}
+
+.dd-menu {
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+
+  li {
+    border-bottom: 1px solid #dcdbdb !important;
+
+    &:last-child {
+      border-bottom: 0px !important;
+    }
+  }
+}
+
+.bg-index-sm {
+  height: 100vh;
+  background-color: #e2f3fc;
+  // background-size: 500px;
+  background-position: right bottom;
+  // background-image: url('soft-ui-dashboard/custom/bg-index.png');
+  background-repeat: no-repeat;
+}
+
+.bg-index-md {
+  height: 100vh;
+  background-color: #e2f3fc;
+  // background-size: 800px;
+  background-position: right bottom;
+  // background-image: url('soft-ui-dashboard/custom/bg-index.png');
+  background-repeat: no-repeat;
+}
+
+.table-custom {
+  th {
+    max-width: 200px !important;
+  }
+}
+
+.dropdown-menu li.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dropdown-menu li.disabled a {
+  color: #6c757d;
+  cursor: not-allowed;
+}
+
+.text-nama {
+  cursor: pointer;
+
+  &:hover {
+    color: #797979;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+}
+
+.Vue-Toastification__toast--warning {
+  color: #424343 !important;
+}

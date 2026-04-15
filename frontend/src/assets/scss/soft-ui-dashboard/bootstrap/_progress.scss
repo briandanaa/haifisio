@@ -1,0 +1,70 @@
+// Progress bar variables
+$progress-height: 1rem !default;
+$progress-font-size: 0.75rem !default;
+$progress-bg: #e9ecef !default;
+$progress-border-radius: 0.25rem !default;
+$progress-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075) !default;
+$progress-bar-color: #fff !default;
+$progress-bar-bg: #007bff !default;
+$stripe-size: $progress-height * 20 !default;
+
+// Progress container
+.progress {
+  display: flex;
+  height: $progress-height;
+  overflow: hidden;
+  @include font-size($progress-font-size);
+  background-color: $progress-bg;
+  @include border-radius($progress-border-radius);
+  @include box-shadow($progress-box-shadow);
+}
+
+// Progress bar
+.progress-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  color: $progress-bar-color;
+  text-align: center;
+  white-space: nowrap;
+  background-color: $progress-bar-bg;
+  position: relative;
+}
+
+// New approach using pseudo-element and transform
+.progress-bar-striped {
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-size: $stripe-size $stripe-size;
+  }
+}
+
+// Smooth animation using transform
+.progress-bar-animated {
+  &::before {
+    animation: moveStripes 60s linear infinite;
+  }
+}
+
+@keyframes moveStripes {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+// Respect reduced motion preferences
+@media (prefers-reduced-motion: reduce) {
+  .progress-bar-animated::before {
+    animation: none;
+  }
+}

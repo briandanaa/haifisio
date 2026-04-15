@@ -1,0 +1,453 @@
+// =========================================================
+// * Vue Soft UI Dashboard Pro - v1.0.0
+// =========================================================
+//
+// * Product Page: https://www.creative-tim.com/product/vue-soft-ui-dashboard-pro
+// * Copyright 2021 Creative Tim (https://www.creative-tim.com)
+//
+// Coded by www.creative-tim.com
+//
+// =========================================================
+//
+// * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+// Bootstrap Functions
+@import "soft-ui-dashboard/bootstrap/functions";
+
+// Custom Variables
+@import "soft-ui-dashboard/custom/variables";
+
+// Theme Variables
+@import "soft-ui-dashboard/variables";
+
+// Bootstrap Core
+@import "soft-ui-dashboard/bootstrap/bootstrap";
+
+// Theme Core
+@import "soft-ui-dashboard/theme-pro";
+
+// Custom Variables
+@import "soft-ui-dashboard/custom/styles";
+
+:root {
+  --dp-font-size: 0.95rem;
+}
+
+table td {
+  word-wrap: break-word;
+}
+
+.vs__search,
+.vs__search:focus {
+  margin: 0 !important;
+}
+
+.vs__search {
+  padding: 0 !important;
+  &::placeholder {
+    color: #a9a9a9 !important;
+  }
+}
+
+input {
+  &::placeholder {
+    color: #a9a9a9 !important;
+  }
+}
+
+.vs__selected {
+  text-align: left !important;
+}
+
+.vs__dropdown-toggle {
+  width: 100% !important;
+  padding: 0.5rem 0.75rem !important;
+  font-size: 0.95rem !important;
+  font-weight: 400 !important;
+  line-height: 1.4rem !important;
+  color: #495057 !important;
+  background-color: #fff !important;
+  background-clip: padding-box !important;
+  border: 1px solid #d2d6da !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  border-radius: 0.5rem !important;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease !important;
+}
+
+.vs__dropdown-menu {
+  margin-top: 5px !important;
+}
+
+.vs__dropdown-option {
+  padding: 10px !important;
+  .disabled {
+    background-color: none !important;
+  }
+}
+
+.vs__dropdown-option--highlight {
+  background-color: rgb(58, 65, 111) !important;
+
+  .disabled {
+    background-color: none !important;
+  }
+}
+
+.vs__dropdown-option--disabled {
+  background-color: #cecece !important;
+  color: #3a3a3a !important;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.vs__selected {
+  margin: 0 !important;
+  padding: 0 !important;
+
+  &-options {
+    flex-wrap: nowrap !important;
+  }
+}
+
+.vs__clear,
+.vs__open-indicator {
+  fill: #394066 !important;
+}
+
+.btn-back {
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  font-size: 1rem;
+  background: white;
+  padding: 8px 17px;
+  border-radius: 6px;
+  color: #393939;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+
+.swal2-textarea {
+  border: 1px solid #5b5b5b;
+}
+
+.icon-check-radio {
+  margin-right: 10px;
+}
+.radio-button-persetujuan {
+  display: none;
+}
+
+.radio-button-persetujuan + label {
+  position: relative;
+  padding: 8px 16px;
+  background-color: #ccc;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.radio-button-persetujuan:checked + label {
+  background-color: #2a4691;
+  color: white;
+  border-color: #2a4691;
+}
+
+.form-wrap {
+  display: flex;
+  flex-direction: column;
+
+  &__input {
+    // width: 80%;
+
+    &-content {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+
+      .terdata-text {
+        width: 15%;
+      }
+
+      .form-group,
+      input,
+      select {
+        width: 100%;
+      }
+    }
+
+    &-row {
+      display: flex;
+      gap: 30px;
+
+      &-wrap {
+        width: 30%;
+      }
+    }
+
+    &-info {
+      display: flex;
+      align-items: baseline;
+      gap: 15px;
+
+      .form-group {
+        width: 95%;
+      }
+
+      i {
+        font-size: 20px;
+        color: #d33535;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .form-wrap {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    justify-content: start;
+    gap: 3px;
+
+    &__label {
+      width: 100%;
+    }
+
+    &__input {
+      width: 100%;
+    }
+  }
+}
+
+.terdata-text {
+  font-size: 0.9rem !important;
+}
+
+.wrap-verif {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.border-verif-jabatan {
+  width: 50%;
+  height: 100%;
+}
+.border-verif {
+  border: 1px solid #d2d2d2;
+  padding: 20px;
+  border-radius: 8px;
+  width: 50%;
+  height: 100%;
+}
+
+.border-history {
+  width: 70% !important;
+}
+
+@media only screen and (max-width: 900px) {
+  .wrap-verif {
+    flex-direction: column;
+  }
+
+  .border-verif {
+    width: 100%;
+  }
+
+  .border-verif-jabatan {
+    width: 100%;
+  }
+
+  .border-history {
+    width: 100% !important;
+  }
+}
+
+.dp__disabled {
+  background-color: #e9ecef !important;
+}
+
+.vs--disabled .vs__dropdown-toggle,
+.vs--disabled .vs__search,
+.vs--disabled .vs__clear,
+.vs--disabled .vs__open-indicator {
+  background-color: #e9ecef !important;
+}
+
+.vs--multiple .vs__selected {
+  padding: 0 0.28em !important;
+}
+
+.vs--multiple .vs__selected-options {
+  flex-wrap: wrap !important;
+  gap: 6px;
+}
+
+.filter-wrap {
+  display: flex;
+  gap: 50px;
+
+  .filter-label-left {
+    display: flex;
+    justify-content: space-between;
+    width: 180px;
+  }
+
+  .filter-label {
+    display: flex;
+    justify-content: space-between;
+    width: 180px;
+  }
+
+  .input-filter {
+    min-width: 300px;
+  }
+
+  .input-search {
+    min-width: 500px;
+  }
+}
+
+.filter-wrap-long {
+  display: flex;
+  gap: 50px;
+
+  .form-label {
+    font-weight: normal !important;
+  }
+
+  .filter-label-left {
+    display: flex;
+    justify-content: space-between;
+    width: 350px;
+  }
+
+  .filter-label {
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+  }
+
+  .input-filter {
+    min-width: 300px;
+  }
+
+  .input-search {
+    min-width: 500px;
+  }
+}
+
+@media only screen and (max-width: 996px) {
+  .filter-wrap {
+    flex-direction: column;
+    gap: 0px;
+
+    .filter-label-left {
+      width: 250px;
+    }
+
+    .filter-label {
+      width: 250px;
+    }
+
+    .input-filter {
+      width: 100%;
+    }
+
+    .input-search {
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .filter-wrap {
+    flex-direction: column;
+    gap: 0px;
+
+    .filter-label-left {
+      width: 250px;
+    }
+
+    .filter-label {
+      width: 250px;
+    }
+
+    .input-filter {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .input-search {
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+}
+
+.btn-icon {
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  &-img {
+    width: 1em;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+}
+
+.primary-icon {
+  background-color: #213467;
+}
+
+.danger-icon {
+  background-color: #ea0606;
+}
+
+.table {
+  margin-bottom: 0 !important;
+}
+.table-responsive {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.btn-table-info {
+  border: none;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  box-shadow: 0px 0px 3.75px rgba(67, 71, 85, 0.27);
+  &:active {
+    opacity: 0.7;
+  }
+}
+
+.btn-blue {
+  background-color: #213467;
+  color: #fff;
+  span {
+    color: #213467;
+    background-color: #fff;
+  }
+}
+
+.Vue-Toastification__container {
+  z-index: 100002 !important;
+}
